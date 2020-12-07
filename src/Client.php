@@ -27,8 +27,13 @@ class Client
      * @param  string  $versleuteld
      * @throws TransmissionSoapException
      */
-    public function __construct(string $username, string $password, string $depot, string $verlader, string $versleuteld = '0')
-    {
+    public function __construct(
+        string $username,
+        string $password,
+        string $depot,
+        string $verlader,
+        string $versleuteld = '0'
+    ) {
         $this->oLogin['username'] = $username;
         $this->oLogin['password'] = $password;
         $this->oLogin['depot'] = $depot;
@@ -58,13 +63,67 @@ class Client
         ]);
     }
 
-    public function addOpdracht(string $type, array $aPlus, array $aRegel)
+    public function addOpdracht(
+        string $type,
+        ?string $nrorder,
+        ?string $nrbordero,
+        string $datum,
+        string $afznaam,
+        string $afznaam2,
+        string $afzstraat,
+        string $afzhuisnr,
+        string $afzpostcode,
+        string $afzplaats,
+        string $afzland,
+        string $afztelefoon,
+        string $afzemail,
+        string $geanaam,
+        string $geanaam2,
+        string $geastraat,
+        string $geahuisnr,
+        string $geapostcode,
+        string $geaplaats,
+        string $gealand,
+        string $geatelefoon,
+        string $geaemail,
+        string $geazoek,
+        string $instructie,
+        string $rembours,
+        array $aPlus,
+        array $aRegel,
+        $zaterdag
+    )
     {
         return $this->soapClient->__soapCall('addOpdracht', [
             'addOpdracht' => array_merge($this->oLogin, [
                 'type' => $type,
+                'nrorder' => $nrorder,
+                'nrbordero' => $nrbordero,
+                'datum' => $datum,
+                'afznaam' => $afznaam,
+                'afznaam2' => $afznaam2,
+                'afzstraat' => $afzstraat,
+                'afzhuisnr' => $afzhuisnr,
+                'afzpostcode' => $afzpostcode,
+                'afzplaats' => $afzplaats,
+                'afzland' => $afzland,
+                'afztelefoon' => $afztelefoon,
+                'afzemail' => $afzemail,
+                'geanaam' => $geanaam,
+                'geanaam2' => $geanaam2,
+                'geastraat' => $geastraat,
+                'geahuisnr' => $geahuisnr,
+                'geapostcode' => $geapostcode,
+                'geaplaats' => $geaplaats,
+                'gealand' => $gealand,
+                'geatelefoon' => $geatelefoon,
+                'geaemail' => $geaemail,
+                'geazoek' => $geazoek,
+                'instructie' => $instructie,
+                'rembours' => $rembours,
                 'aPlus' => $aPlus,
                 'aRegel' => $aRegel,
+                'zaterdag' => $zaterdag,
             ]),
         ]);
     }
@@ -120,6 +179,6 @@ class Client
             return [];
         }
 
-        return array_map(fn ($item) => (new Afhaalpunt($item))->toArray(), $points);
+        return array_map(fn($item) => (new Afhaalpunt($item))->toArray(), $points);
     }
 }
