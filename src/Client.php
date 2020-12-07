@@ -44,33 +44,47 @@ class Client
 
     public function getAdr(string $unnummer)
     {
-        $result = $this->soapClient->__soapCall('getAdr', [
+        return $this->soapClient->__soapCall('getAdr', [
             'getAdr' => array_merge($this->oLogin, [
                 'unnummer' => $unnummer,
             ]),
         ]);
-
-        return $result;
     }
 
     public function getPkgebied()
     {
-        $result = $this->soapClient->__soapCall('getPkgebied', [
+        return $this->soapClient->__soapCall('getPkgebied', [
             'getPkgebied' => $this->oLogin,
         ]);
+    }
 
-        return $result;
+    public function addOpdracht(string $type, array $aPlus, array $aRegel)
+    {
+        return $this->soapClient->__soapCall('addOpdracht', [
+            'addOpdracht' => array_merge($this->oLogin, [
+                'type' => $type,
+                'aPlus' => $aPlus,
+                'aRegel' => $aRegel,
+            ]),
+        ]);
+    }
+
+    public function delOpdracht(string $nrzend)
+    {
+        return $this->soapClient->__soapCall('delOpdracht', [
+            'delOpdracht' => array_merge($this->oLogin, [
+                'nrzend' => $nrzend,
+            ]),
+        ]);
     }
 
     public function getAdresNL_2(string $postcode)
     {
-        $result = $this->soapClient->__soapCall('getAdresNL_2', [
+        return $this->soapClient->__soapCall('getAdresNL_2', [
             'getAdresNL_2' => array_merge($this->oLogin, [
                 'postcode' => $postcode,
             ]),
         ]);
-
-        return $result;
     }
 
     /**
@@ -79,22 +93,18 @@ class Client
      */
     public function getVerzendlijst()
     {
-        $result = $this->soapClient->__soapCall('getVerzendlijst', [
+        return $this->soapClient->__soapCall('getVerzendlijst', [
             'getVerzendlijst' => $this->oLogin,
         ]);
-
-        return $result;
     }
 
     public function getLabels(array $labels)
     {
-        $result = $this->soapClient->__soapCall('getLabels', [
+        return $this->soapClient->__soapCall('getLabels', [
             'getLabels' => array_merge($this->oLogin, [
                 'aNrzend' => $labels,
             ]),
         ]);
-
-        return $result;
     }
 
     /**
