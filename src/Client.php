@@ -53,6 +53,15 @@ class Client
         return $result;
     }
 
+    public function getPkgebied()
+    {
+        $result = $this->soapClient->__soapCall('getPkgebied', [
+            'getPkgebied' => $this->oLogin,
+        ]);
+
+        return $result;
+    }
+
     public function getAdresNL_2(string $postcode)
     {
         $result = $this->soapClient->__soapCall('getAdresNL_2', [
