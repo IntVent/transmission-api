@@ -17,10 +17,14 @@ composer require intvent/transmission-api
 
 ``` php
 $username = 'username';
-$sec_code_1 = 'sec_code_1';
-$sec_code_2 = 'sec_code_2';
+$password = 'password';
+$depot = 'depot';
+$verlader = 'verlader';
 
-$client = new IntVent\Transmission\Client($username, $password);
+$client = new IntVent\Transmission\Client($username, $password, $depot, $verlader);
+
+// getVerzendlijst()
+$result = $client->getVerzendlijst();
 ```
 
 ## Testing
