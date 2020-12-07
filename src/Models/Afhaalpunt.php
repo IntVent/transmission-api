@@ -2,7 +2,9 @@
 
 namespace IntVent\Transmission\Models;
 
+use Exception;
 use IntVent\Transmission\Contracts\Arrayable;
+use IntVent\Transmission\Exceptions\TransmissionException;
 use IntVent\Transmission\Traits\ProtectedFieldsToArrayTrait;
 
 class Afhaalpunt implements Arrayable
@@ -21,8 +23,12 @@ class Afhaalpunt implements Arrayable
     {
         $fields = get_object_vars($this);
         foreach ($fields as $field => $item) {
-            $method = 'set'.ucfirst($field);
-            $this->$method($input->{$field});
+            try {
+                $method = 'set'.ucfirst($field);
+                $this->$method($input->{$field});
+            } catch (Exception $exception) {
+                throw new TransmissionException($exception->getMessage());
+            }
         }
     }
 
