@@ -21,8 +21,8 @@ class Afhaalpunt implements Arrayable
 
     public function __construct($input)
     {
-        $fields = get_object_vars($this);
-        foreach ($fields as $field => $item) {
+        $fields = array_keys(get_object_vars($this));
+        foreach ($fields as $field) {
             try {
                 $method = 'set'.ucfirst($field);
                 $this->$method($input->{$field});
