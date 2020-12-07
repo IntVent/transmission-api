@@ -42,6 +42,28 @@ class Client
         }
     }
 
+    public function getAdr(string $unnummer)
+    {
+        $result = $this->soapClient->__soapCall('getAdr', [
+            'getAdr' => array_merge($this->oLogin, [
+                'unnummer' => $unnummer,
+            ]),
+        ]);
+
+        return $result;
+    }
+
+    public function getAdresNL_2(string $postcode)
+    {
+        $result = $this->soapClient->__soapCall('getAdresNL_2', [
+            'getAdresNL_2' => array_merge($this->oLogin, [
+                'postcode' => $postcode,
+            ]),
+        ]);
+
+        return $result;
+    }
+
     /**
      * Get verzendlijst which is a base64encoded string.
      * @return string
