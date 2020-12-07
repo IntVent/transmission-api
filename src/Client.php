@@ -43,6 +43,30 @@ class Client
     }
 
     /**
+     * Get verzendlijst which is a base64encoded string.
+     * @return string
+     */
+    public function getVerzendlijst()
+    {
+        $result = $this->soapClient->__soapCall('getVerzendlijst', [
+            'getVerzendlijst' => $this->oLogin,
+        ]);
+
+        return $result;
+    }
+
+    public function getLabels(array $labels)
+    {
+        $result = $this->soapClient->__soapCall('getLabels', [
+            'getLabels' => array_merge($this->oLogin, [
+                'aNrzend' => $labels,
+            ]),
+        ]);
+
+        return $result;
+    }
+
+    /**
      * @return array
      */
     public function getAfhaalpunt(): array
