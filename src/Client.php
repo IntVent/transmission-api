@@ -92,8 +92,7 @@ class Client
         array $aPlus,
         array $aRegel,
         $zaterdag
-    )
-    {
+    ) {
         return $this->soapClient->__soapCall('addOpdracht', [
             'addOpdracht' => array_merge($this->oLogin, [
                 'type' => $type,
@@ -179,6 +178,6 @@ class Client
             return [];
         }
 
-        return array_map(fn($item) => (new Afhaalpunt($item))->toArray(), $points);
+        return array_map(fn ($item) => (new Afhaalpunt($item))->toArray(), $points);
     }
 }
